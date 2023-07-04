@@ -1,0 +1,13 @@
+package com.example.dolbom.domain.post.present.dto.request;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
+public class PostRequest {
+    private String title;
+    private String content;
+}
