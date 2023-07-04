@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,17 +43,26 @@ public class User {
     @Column
     private Long callNumber;
 
+    @ColumnDefault("b'0'")
+    private Boolean certification;
+
     @Builder
-    public User(Long id, String accountId, String password, Long callNumber, Authority authority, String nickname){
+    public User(Long id, String accountId, String password, Long callNumber, Authority authority, String nickname, Boolean certification){
         this.id = id;
         this.accountId = accountId;
         this.password = password;
         this.callNumber = callNumber;
         this.authority = authority;
         this.nickname = nickname;
+        this.certification = certification;
     }
 
     public void updatePass(String password){
         this.password = password;
+    }
+
+    public void updateProfile(String nickname, Boolean certification){
+        this.nickname = nickname;
+        this.certification = certification;
     }
 }
