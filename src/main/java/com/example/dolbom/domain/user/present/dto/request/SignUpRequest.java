@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @NoArgsConstructor
-public class SignUpRequestDto {
+public class SignUpRequest {
 
     @NotBlank(message = "accountId는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     @Size(min = 6, max = 20, message = "accountId는 6자 이상, 20자 이하여야 합니다.")

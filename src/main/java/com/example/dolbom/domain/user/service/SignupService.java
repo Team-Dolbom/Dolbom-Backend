@@ -3,7 +3,7 @@ package com.example.dolbom.domain.user.service;
 import com.example.dolbom.domain.user.domain.User;
 import com.example.dolbom.domain.user.domain.repository.UserRepository;
 import com.example.dolbom.domain.user.exception.AlreadyJoinedException;
-import com.example.dolbom.domain.user.present.dto.request.SignUpRequestDto;
+import com.example.dolbom.domain.user.present.dto.request.SignUpRequest;
 import com.example.dolbom.global.enums.Authority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +17,7 @@ public class SignupService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public void signup(SignUpRequestDto request){
+    public void signup(SignUpRequest request){
         if(userRepository.findByAccountId(request.getAccountId()).isPresent())
             throw AlreadyJoinedException.EXCEPTION;
 
