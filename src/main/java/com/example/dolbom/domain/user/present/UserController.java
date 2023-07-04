@@ -2,9 +2,11 @@ package com.example.dolbom.domain.user.present;
 
 import com.example.dolbom.domain.user.present.dto.request.SignInRequest;
 import com.example.dolbom.domain.user.present.dto.request.SignUpRequest;
+import com.example.dolbom.domain.user.present.dto.request.UpdatePasswordRequest;
 import com.example.dolbom.domain.user.present.dto.response.TokenResponse;
 import com.example.dolbom.domain.user.service.SignInService;
 import com.example.dolbom.domain.user.service.SignupService;
+import com.example.dolbom.domain.user.service.UpdatePasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ public class UserController {
 
     private final SignupService signupService;
     private final SignInService signInService;
+    private final UpdatePasswordService updatePasswordService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -28,5 +31,10 @@ public class UserController {
     @PostMapping("/signin")
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request){
         return signInService.signIn(request);
+    }
+
+    @PutMapping("/password")
+    public void updatePass(@RequestBody @Valid UpdatePasswordRequest request){
+        updatePasswordService.passwordUpdate(request);
     }
 }

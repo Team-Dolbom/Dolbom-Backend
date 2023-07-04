@@ -51,4 +51,8 @@ public class User {
         this.authority = authority;
         this.nickname = nickname;
     }
+
+    public void updatePass(String password){
+        this.password = password;
+    }
 }
