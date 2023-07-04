@@ -11,10 +11,10 @@ import javax.validation.constraints.Size;
 public class SignInRequest {
 
     @NotBlank(message = "accountId는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @Size(min = 4, max = 15, message = "accountId 는 4자 이상 15자 이하여야 합니다.")
+    @Size(min = 6, max = 20, message = "accountId는 6자 이상, 20자 이하여야 합니다.")
     private String accountId;
 
     @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @Size(min = 8, max = 20, message = "password는 8자 이상 20자 이하여야 합니다.")
+    @Size(min = 6, message = "password는 영문, 숫자, 특수문자를 포함한 6자 이상이여야 합니다.")
     private String password;
 }

@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PutMapping("/mypage")
-    public void updateProfile(@RequestBody   UpdateProfileRequest request){
+    public void updateProfile(@RequestBody UpdateProfileRequest request){
         myPageService.patchProfile(request);
     }
 }
