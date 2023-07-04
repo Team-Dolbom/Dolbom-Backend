@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -36,8 +37,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeHttpRequests()
 
+                .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/signin").permitAll()
+                .antMatchers(HttpMethod.PUT, "/user/password").permitAll()
 
-                .anyRequest().permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/sms").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth/refresh").authenticated()
+
+                .antMatchers(HttpMethod.GET, "/mypage").authenticated()
+                .antMatchers(HttpMethod.PUT, "/mypage").authenticated()
+
+                .antMatchers(HttpMethod.GET, "/page").permitAll()
+                .antMatchers(HttpMethod.GET, "/page/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/page").authenticated()
+                .antMatchers(HttpMethod.PUT, "/page/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/page/{id}").authenticated()
+
+                .antMatchers(HttpMethod.GET, "/offer").permitAll()
+                .antMatchers(HttpMethod.GET, "/offer/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/offer").authenticated()
+                .antMatchers(HttpMethod.PUT, "/offer/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/offer/{id}").authenticated()
+
+
                 .and()
                 .formLogin().disable()
 
