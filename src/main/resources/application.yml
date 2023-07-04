@@ -18,6 +18,12 @@ spring:
     port: ${REDIS_PORT:6379}
 
 
+sms:
+  serviceId: ${SMS_SERVICE_ID}
+  accessKey: ${SMS_ACCESS_KEY}
+  secretKey: ${SMS_SECRET_KEY}
+  fromPhone: ${SMS_FROM_PHONE}
+
 
 jwt:
   secret-key: ${JWT_SECRET}
