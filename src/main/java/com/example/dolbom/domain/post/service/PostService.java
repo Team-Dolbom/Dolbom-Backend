@@ -29,11 +29,18 @@ public class PostService {
                 .map(posts -> new PostResponse(
                         posts.getId(),
                         posts.getTitle(),
-                        posts.getContent(),
+                        posts.getContent().substring(0, Math.min(posts.getContent().length(), 50)),
                         posts.getAuthor()
                 )).collect(Collectors.toList());
 
         return new PostListResponse(postsList);
+    }
+
+    @Transactional(readOnly = true)
+    public Post postDetail(Long id){
+        Post post = postRepository.findPostsById(id)
+                .orElseThrow(()-> PostNotFoundException.EXCEPTION);
+        return post;
     }
 
     @Transactional

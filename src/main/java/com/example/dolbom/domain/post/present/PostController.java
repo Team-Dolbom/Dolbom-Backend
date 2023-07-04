@@ -1,6 +1,7 @@
 package com.example.dolbom.domain.post.present;
 
 
+import com.example.dolbom.domain.post.domain.Post;
 import com.example.dolbom.domain.post.present.dto.request.PostRequest;
 import com.example.dolbom.domain.post.present.dto.response.PostListResponse;
 import com.example.dolbom.domain.post.service.PostService;
@@ -17,6 +18,11 @@ public class PostController {
     @GetMapping("/")
     public PostListResponse get() {
         return postService.findAllDesc();
+    }
+
+    @GetMapping("/{id}")
+    public Post getPostById(@PathVariable Long id){
+        return postService.postDetail(id);
     }
 
     @PostMapping("/create")
