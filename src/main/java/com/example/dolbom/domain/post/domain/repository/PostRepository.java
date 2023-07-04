@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
-    List<Post> findAll();
+    List<Post> findAllByOrderByIdDesc();
     Optional<Post> findPostsById(Long id);
     Optional<Post> deletePostById(Long id);
 }

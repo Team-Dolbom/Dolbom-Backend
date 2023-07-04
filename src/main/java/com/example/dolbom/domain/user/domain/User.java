@@ -36,8 +36,7 @@ public class User {
     @NotNull
     private Authority authority;
 
-    @Column
-    @NotNull
+    @Column(unique = true)
     private String nickname;
 
     @Column

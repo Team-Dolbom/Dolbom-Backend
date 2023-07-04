@@ -25,7 +25,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public PostListResponse findAllDesc() {
-        List<PostResponse> postsList = postRepository.findAll().stream()
+        List<PostResponse> postsList = postRepository.findAllByOrderByIdDesc().stream()
                 .map(posts -> new PostResponse(
                         posts.getId(),
                         posts.getTitle(),
