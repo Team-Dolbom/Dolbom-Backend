@@ -26,12 +26,12 @@ public class User {
 
     @Column(unique = true, nullable = false)
     @NotNull
-    @Size(min = 4, max = 15)
+    @Size(min = 6, max = 20)
     private String accountId;
 
     @Column
     @NotNull
-    @Size(min = 8)
+    @Size(min = 6)
     private String password;
 
     @Column
