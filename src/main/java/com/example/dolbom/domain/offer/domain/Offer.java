@@ -20,7 +20,7 @@ public class Offer {
     @ColumnDefault("b'0'")
     private Boolean babySitter;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     private String title;
 
     @Column(length = 200, columnDefinition = "TEXT", nullable = false)

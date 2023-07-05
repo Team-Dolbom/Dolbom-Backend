@@ -12,9 +12,12 @@ import com.example.dolbom.domain.user.service.SignupService;
 import com.example.dolbom.domain.user.service.UpdatePasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")

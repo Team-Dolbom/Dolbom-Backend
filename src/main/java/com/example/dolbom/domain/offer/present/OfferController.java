@@ -8,6 +8,8 @@ import com.example.dolbom.domain.offer.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/offer")
@@ -27,12 +29,12 @@ public class OfferController {
     }
 
     @PostMapping("/create")
-    public void createOffer(@RequestBody OfferRequest request){
+    public void createOffer(@RequestBody @Valid OfferRequest request){
         offerService.save(request);
     }
 
     @PutMapping("/{id}")
-    public void updateOffer(@RequestBody OfferRequest request, @PathVariable Long id){
+    public void updateOffer(@RequestBody @Valid OfferRequest request, @PathVariable Long id){
         offerService.update(id, request);
     }
 
