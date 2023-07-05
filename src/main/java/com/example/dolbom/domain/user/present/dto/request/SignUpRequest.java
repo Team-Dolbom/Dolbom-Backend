@@ -14,7 +14,7 @@ public class SignUpRequest {
     @Size(min = 6, max = 20, message = "accountId는 6자 이상, 20자 이하여야 합니다.")
     private String accountId;
 
-    @NotBlank(message = "nickname은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @NotBlank(message = "nickname은 Null을 허용하지 않습니다.")
     private String nickname;
 
 
