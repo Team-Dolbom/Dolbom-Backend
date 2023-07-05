@@ -47,11 +47,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/mypage").authenticated()
                 .antMatchers(HttpMethod.PUT, "/mypage").authenticated()
 
-                .antMatchers(HttpMethod.GET, "/page").permitAll()
-                .antMatchers(HttpMethod.GET, "/page/{id}").permitAll()
-                .antMatchers(HttpMethod.POST, "/page").authenticated()
-                .antMatchers(HttpMethod.PUT, "/page/{id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/page/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/post").permitAll()
+                .antMatchers(HttpMethod.GET, "/post/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/post").authenticated()
+                .antMatchers(HttpMethod.PUT, "/post/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/post/{id}").authenticated()
 
                 .antMatchers(HttpMethod.GET, "/offer").permitAll()
                 .antMatchers(HttpMethod.GET, "/offer/{id}").permitAll()
