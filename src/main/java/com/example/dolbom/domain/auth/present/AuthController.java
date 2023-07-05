@@ -17,7 +17,6 @@ import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-@Slf4j
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -32,7 +31,6 @@ public class AuthController {
 
     @PostMapping("/sms")
     public SmsCodeResponse send(@RequestBody SendSmsRequest request) throws NoSuchAlgorithmException, URISyntaxException, UnsupportedEncodingException, InvalidKeyException, JsonProcessingException {
-        log.info(request.getPhoneNumber());
         String code = smsService.sendSms(request.getPhoneNumber());
         return SmsCodeResponse.builder()
                 .code(code)

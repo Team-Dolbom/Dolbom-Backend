@@ -22,6 +22,7 @@ public class OfferController {
 
     @GetMapping("/{id}")
     public OfferDetailResponse getOfferById(@PathVariable Long id){
+        offerService.updateView(id);
         return offerService.findOfferById(id);
     }
 

@@ -30,9 +30,11 @@ public class PostService {
         List<PostResponse> postsList = postRepository.findAllByOrderByIdDesc().stream()
                 .map(posts -> new PostResponse(
                         posts.getId(),
+                        posts.getCategory(),
                         posts.getTitle(),
                         posts.getContent().substring(0, Math.min(posts.getContent().length(), 50)),
-                        posts.getAuthor()
+                        posts.getRegion(),
+                        posts.getView()
                 )).collect(Collectors.toList());
 
         return new PostListResponse(postsList);
@@ -49,6 +51,7 @@ public class PostService {
     public void save(PostRequest request){
         postRepository.save(
                 Post.builder()
+                        .category(request.getCategory())
                         .title(request.getTitle())
                         .content(request.getContent())
                         .author(userFacade.getCurrentUser().getAccountId())
@@ -69,7 +72,7 @@ public class PostService {
             throw PostAccessDeniedException.EXCEPTION;
         }
 
-        post.update(request.getTitle(), request.getContent());
+        post.update(request.getCategory(), request.getTitle(), request.getContent());
     }
 
 
@@ -85,6 +88,11 @@ public class PostService {
         }
 
         postRepository.deletePostById(id);
+    }
+
+    @Transactional
+    public void updateView(Long id){
+        postRepository.updateView(id);
     }
 
 }

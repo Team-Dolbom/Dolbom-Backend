@@ -2,6 +2,7 @@ package com.example.dolbom.domain.offer.domain;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Offer {
     @Id
@@ -32,6 +34,12 @@ public class Offer {
 
     @ColumnDefault("b'0'")
     private Boolean certification;
+
+    @ColumnDefault("0")
+    private Long view;
+
+    @ColumnDefault("'대전'")
+    private String region;
 
     @Builder
     public Offer(Long id, Boolean babySitter, String title, String content, String intro, String author){

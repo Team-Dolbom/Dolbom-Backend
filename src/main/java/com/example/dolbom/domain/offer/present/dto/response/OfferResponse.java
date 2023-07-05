@@ -12,4 +12,6 @@ public class OfferResponse {
     private Boolean babySitter;
     private String title;
     private String content;
+    private String region;
+    private Long view;
 }

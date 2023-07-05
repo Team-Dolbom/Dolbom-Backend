@@ -8,6 +8,8 @@ import com.example.dolbom.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/post")
@@ -22,11 +24,12 @@ public class PostController {
 
     @GetMapping("/{id}")
     public Post getPostById(@PathVariable Long id){
+        postService.updateView(id);
         return postService.postDetail(id);
     }
 
     @PostMapping("/")
-    public void createPost(@RequestBody PostRequest request){
+    public void createPost(@RequestBody @Valid PostRequest request){
         postService.save(request);
     }
 

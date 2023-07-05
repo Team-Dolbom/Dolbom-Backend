@@ -33,7 +33,9 @@ public class OfferService {
                         offer.getId(),
                         offer.getBabySitter(),
                         offer.getTitle(),
-                        offer.getContent().substring(0, Math.min(offer.getContent().length(), 50))
+                        offer.getContent().substring(0, Math.min(offer.getContent().length(), 50)),
+                        offer.getRegion(),
+                        offer.getView()
                 )).collect(Collectors.toList());
 
         return new OfferListResponse(offerList);
@@ -51,6 +53,7 @@ public class OfferService {
                 .intro(offer.getIntro())
                 .author(offer.getAuthor())
                 .certification(offer.getCertification())
+                .view(offer.getView())
                 .build();
     }
 
@@ -101,4 +104,8 @@ public class OfferService {
     }
 
 
+    @Transactional
+    public void updateView(Long id){
+        offerRepository.updateView(id);
+    }
 }

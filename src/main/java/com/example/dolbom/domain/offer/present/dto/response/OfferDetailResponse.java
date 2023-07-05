@@ -15,4 +15,5 @@ public class OfferDetailResponse {
     private String intro;
     private String author;
     private Boolean certification;
+    private Long view;
 }

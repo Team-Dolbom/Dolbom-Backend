@@ -9,4 +9,5 @@ import java.util.List;
 @AllArgsConstructor
 public class PostListResponse {
      List<PostResponse> postList;
+
 }

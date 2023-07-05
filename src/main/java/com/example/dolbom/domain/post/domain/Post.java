@@ -5,17 +5,23 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private String category;
 
     @Column(length = 30, nullable = false)
     private String title;
@@ -26,14 +32,22 @@ public class Post extends BaseTimeEntity {
     @Column
     private String author;
 
+    @ColumnDefault("0")
+    private Long view;
+
+    @ColumnDefault("'대전'")
+    private String region;
+
     @Builder
-    public Post(String title, String content, String author){
+    public Post(String category, String title, String content, String author){
+        this.category = category;
         this.title = title;
         this.content = content;
         this.author = author;
     }
 
-    public void update(String title, String content){
+    public void update(String category, String title, String content){
+        this.category = category;
         this.title = title;
         this.content = content;
     }
