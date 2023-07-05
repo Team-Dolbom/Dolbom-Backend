@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
@@ -22,7 +24,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @NotNull
     @Size(min = 4, max = 15)
     private String accountId;
@@ -40,13 +42,13 @@ public class User {
     private String nickname;
 
     @Column
-    private Long callNumber;
+    private String callNumber;
 
     @ColumnDefault("b'0'")
     private Boolean certification;
 
     @Builder
-    public User(Long id, String accountId, String password, Long callNumber, Authority authority, String nickname, Boolean certification){
+    public User(Long id, String accountId, String password, String callNumber, Authority authority, String nickname, Boolean certification){
         this.id = id;
         this.accountId = accountId;
         this.password = password;

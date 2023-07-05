@@ -9,8 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class OfferResponse {
     private Long id;
+    private Boolean babySitter;
     private String title;
     private String content;
-    private String author;
-    private Boolean certification;
 }

@@ -5,9 +5,11 @@ import com.example.dolbom.domain.offer.domain.repository.OfferRepository;
 import com.example.dolbom.domain.offer.exception.OfferAccessDeniedException;
 import com.example.dolbom.domain.offer.exception.OfferNotFoundException;
 import com.example.dolbom.domain.offer.present.dto.request.OfferRequest;
+import com.example.dolbom.domain.offer.present.dto.response.OfferDetailResponse;
 import com.example.dolbom.domain.offer.present.dto.response.OfferListResponse;
 import com.example.dolbom.domain.offer.present.dto.response.OfferResponse;
 import com.example.dolbom.domain.user.domain.User;
+import com.example.dolbom.domain.user.domain.repository.UserRepository;
 import com.example.dolbom.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,37 +22,35 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OfferService {
     private final OfferRepository offerRepository;
+    private final UserRepository userRepository;
 
     private final UserFacade userFacade;
 
     @Transactional(readOnly = true)
     public OfferListResponse findAllDesc(){
-        User user = userFacade.getCurrentUser();
         List<OfferResponse> offerList = offerRepository.findAllByOrderByIdDesc().stream()
                 .map(offer -> new OfferResponse(
                         offer.getId(),
+                        offer.getBabySitter(),
                         offer.getTitle(),
-                        offer.getContent().substring(0, Math.min(offer.getContent().length(), 50)),
-                        offer.getIntro(),
-                        user.getCertification()
+                        offer.getContent().substring(0, Math.min(offer.getContent().length(), 50))
                 )).collect(Collectors.toList());
 
         return new OfferListResponse(offerList);
     }
 
     @Transactional(readOnly = true)
-    public OfferResponse findOfferById(Long id){
+    public OfferDetailResponse findOfferById(Long id){
         Offer offer = offerRepository.findOfferById(id)
                 .orElseThrow(()-> OfferNotFoundException.EXCEPTION);
-
-        Boolean certification = userFacade.getCurrentUser().getCertification();
-
-        return OfferResponse.builder()
+        return OfferDetailResponse.builder()
                 .id(offer.getId())
+                .babySitter(offer.getBabySitter())
                 .title(offer.getTitle())
                 .content(offer.getContent())
-                .certification(certification)
+                .intro(offer.getIntro())
                 .author(offer.getAuthor())
+                .certification(offer.getCertification())
                 .build();
     }
 

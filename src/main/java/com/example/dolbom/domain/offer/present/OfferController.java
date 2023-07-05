@@ -1,6 +1,7 @@
 package com.example.dolbom.domain.offer.present;
 
 import com.example.dolbom.domain.offer.present.dto.request.OfferRequest;
+import com.example.dolbom.domain.offer.present.dto.response.OfferDetailResponse;
 import com.example.dolbom.domain.offer.present.dto.response.OfferListResponse;
 import com.example.dolbom.domain.offer.present.dto.response.OfferResponse;
 import com.example.dolbom.domain.offer.service.OfferService;
@@ -20,7 +21,7 @@ public class OfferController {
     }
 
     @GetMapping("/{id}")
-    public OfferResponse getOfferById(@PathVariable Long id){
+    public OfferDetailResponse getOfferById(@PathVariable Long id){
         return offerService.findOfferById(id);
     }
 

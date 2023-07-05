@@ -25,7 +25,7 @@ public class PostController {
         return postService.postDetail(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public void createPost(@RequestBody PostRequest request){
         postService.save(request);
     }

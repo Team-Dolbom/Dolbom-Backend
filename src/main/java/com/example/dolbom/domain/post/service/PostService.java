@@ -10,12 +10,14 @@ import com.example.dolbom.domain.post.present.dto.response.PostResponse;
 import com.example.dolbom.domain.user.domain.User;
 import com.example.dolbom.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -58,6 +60,8 @@ public class PostService {
     public void update(Long id, PostRequest request){
         Post post = postRepository.findPostsById(id)
                 .orElseThrow(()-> PostNotFoundException.EXCEPTION);
+
+        log.info("check");
 
         User currentUser = userFacade.getCurrentUser();
 

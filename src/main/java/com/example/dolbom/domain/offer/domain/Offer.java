@@ -30,6 +30,9 @@ public class Offer {
     @Column(nullable = false)
     private String author;
 
+    @ColumnDefault("b'0'")
+    private Boolean certification;
+
     @Builder
     public Offer(Long id, Boolean babySitter, String title, String content, String intro, String author){
         this.id = id;

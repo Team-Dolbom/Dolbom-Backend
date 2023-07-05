@@ -27,6 +27,7 @@ public class SignupService {
                         .accountId(request.getAccountId())
                         .password(passwordEncoder.encode(request.getPassword()))
                         .nickname(request.getNickname())
+                        .callNumber(request.getPhoneNumber())
                         .authority(Authority.USER)
                         .build()
         );

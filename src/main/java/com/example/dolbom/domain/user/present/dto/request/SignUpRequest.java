@@ -21,4 +21,7 @@ public class SignUpRequest {
     @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     @Size(min = 6, message = "password는 영문, 숫자, 특수문자를 포함한 6자 이상이여야 합니다.")
     private String password;
+
+    @NotBlank(message = "phoneNumber는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    private String phoneNumber;
 }
