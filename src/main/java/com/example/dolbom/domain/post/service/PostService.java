@@ -32,7 +32,7 @@ public class PostService {
                         posts.getId(),
                         posts.getCategory(),
                         posts.getTitle(),
-                        posts.getContent().substring(0, Math.min(posts.getContent().length(), 50)),
+                        posts.getContent().substring(0, Math.min(posts.getContent().length(), 40)),
                         posts.getRegion(),
                         posts.getView()
                 )).collect(Collectors.toList());

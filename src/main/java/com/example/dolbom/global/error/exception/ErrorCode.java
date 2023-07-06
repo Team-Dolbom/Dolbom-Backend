@@ -10,6 +10,7 @@ import lombok.Getter;
 public enum ErrorCode {
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     USER_ALREADY_JOINED(409, "USER-409-1", "User Already Joined"),
+    USER_ACCESS_DENIED(403, "USER-403-1", "User Access Denied"),
 
     INVALID_JWT(401, "JWT-401-1", "Invalid Jwt"),
     EXPIRED_JWT(401, "JWT-401-2", "Expired JWT"),

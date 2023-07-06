@@ -6,10 +6,7 @@ import com.example.dolbom.domain.user.present.dto.request.UpdatePasswordRequest;
 import com.example.dolbom.domain.user.present.dto.request.UpdateProfileRequest;
 import com.example.dolbom.domain.user.present.dto.response.MyPageResponse;
 import com.example.dolbom.domain.user.present.dto.response.TokenResponse;
-import com.example.dolbom.domain.user.service.MyPageService;
-import com.example.dolbom.domain.user.service.SignInService;
-import com.example.dolbom.domain.user.service.SignupService;
-import com.example.dolbom.domain.user.service.UpdatePasswordService;
+import com.example.dolbom.domain.user.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
@@ -28,6 +25,7 @@ public class UserController {
     private final SignInService signInService;
     private final UpdatePasswordService updatePasswordService;
     private final MyPageService myPageService;
+    private final DeleteUserService deleteUserService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
@@ -53,5 +51,10 @@ public class UserController {
     @PutMapping("/mypage")
     public void updateProfile(@RequestBody UpdateProfileRequest request){
         myPageService.patchProfile(request);
+    }
+
+    @DeleteMapping("/{accountId}")
+    public void deleteUser(@PathVariable String accountId){
+        deleteUserService.deleteUser(accountId);
     }
 }
